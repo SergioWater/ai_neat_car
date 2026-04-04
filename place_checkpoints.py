@@ -15,11 +15,12 @@ in the format you can paste directly into newcar.py.
 """
 import pygame
 import sys
+from settings import MAP_FILE
 
 pygame.init()
 
 # Load the map
-track_image = pygame.image.load('map3.png')
+track_image = pygame.image.load(MAP_FILE)
 MAP_W, MAP_H = track_image.get_size()  # 1920 x 1080
 
 # Scale to fit screen (80% of screen width)

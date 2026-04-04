@@ -20,7 +20,7 @@ CAR_SIZE_Y = int(60 * SCALE)
 BORDER_COLOR = (255, 255, 255, 255)  # White border color
 
 # Track map file
-MAP_FILE = 'map3.png'
+MAP_FILE = 'Tracks/map3.png'
 
 # Car sprite file
 CAR_FILE = 'car.png'
