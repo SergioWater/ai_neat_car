@@ -1,26 +1,34 @@
-Neural Car Driving with NEAT
+# Advanced Autonomous Vehicle Simulation
 
-zip -r project.zip . -x "venv/*" -x ".DS_Store"
+Self-driving vehicle simulation built with Python, Pygame, and NEAT.
 
+## What It Does
 
+- Simulates cars driving around 2D tracks.
+- Uses sensor lines to measure the distance to road boundaries.
+- Lets AI-controlled cars choose when to turn, speed up, or slow down.
+- Rewards cars for making forward progress through ordered checkpoints.
+- Stops cars that crash or remain stuck so training can continue efficiently.
 
-This repository contains code that uses the NEAT (NeuroEvolution of Augmenting Topologies) algorithm to train a virtual car to drive around a 2D track built in Pygame. Over multiple generations, the neural networks evolve and (hopefully) learn to survive longer without crashing into borders.
+## Tech
 
-How It Works
-	1.	Car and Track
-	•	A Car class represents each car’s position, speed, angle, and collision detection.
-	•	A collision mask (from pygame.mask) is used to detect border collisions in a track image (map3.png).
-	•	Radars (sensor lines) detect distance to the nearest border at several angles.
-	2.	Neural Networks (NEAT)
-	•	Each car is controlled by a neural network created by the NEAT library.
-	•	The neural network receives sensor readings (radar distances) and outputs which action to take (turn left, turn right, speed up, or slow down).
-	•	A reward system measures how far a car travels, improving the genome’s fitness score.
-	3.	Evolution
-	•	After each generation, the best-performing networks are kept and evolve (via mutation/crossover) to form the next generation.
-	•	Over multiple generations, the networks should adapt to crash less and drive farther.
+Python, Pygame, NEAT-Python
 
-Requirements
-	•	Python 3.8+ (or any recent version)
-	•	Conda (for environment management)
-	•	Pygame
-	•	NEAT-Python
+## How It Works
+
+Each car receives five simulated sensor readings. A neural network uses those readings to choose a driving action. Cars that make more progress receive higher scores, and NEAT carries stronger behaviors into later generations.
+
+The project also includes checkpoint loading, multiple tracks, collision detection, and stall detection.
+
+## Running Locally
+
+```bash
+python -m venv .venv
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+python main.py
+```
+
+## Engineering Notes
+
+The training score is based on ordered checkpoint progress rather than raw driving distance. This prevents cars from gaining points by moving in circles or repeatedly crossing the same area.
